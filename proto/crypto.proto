@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package crypto;
+
+option java_multiple_files = true;
+option java_package = "com.myservice.infrastructure.adapters.out.grpc.proto";
+option java_outer_classname = "CryptoProto";
+
+service CryptoService {
+  rpc Encrypt (EncryptRequest) returns (EncryptResponse);
+  rpc Decrypt (DecryptRequest) returns (DecryptResponse);
+}
+
+message EncryptRequest {
+  string plain_text = 1;
+}
+
+message EncryptResponse {
+  string cipher_text_base64 = 1;
+  string iv_base64 = 2;
+}
+
+message DecryptRequest {
+  string cipher_text_base64 = 1;
+  string iv_base64 = 2;
+}
+
+message DecryptResponse {
+  string plain_text = 1;
+}
